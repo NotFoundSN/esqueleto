@@ -1,5 +1,5 @@
 {
-  "name": "api_rol",
+  "name": "base",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,6 +13,6 @@
     "sequelize": "^6.23.1",
     "sqlite3": "^5.1.1"
   },
-  "description": "api para el manejo de planillas de un juego de rol",
+  "description": "estructura base de cualquier proyecto",
   "main": "app.js"
 }
