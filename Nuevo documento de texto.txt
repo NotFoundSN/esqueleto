@@ -1,0 +1,38 @@
+usuario					users
+	id						id
+	username				username
+	nombre					name
+	apellido				surname
+	pw						password
+	email					email
+	
+mesas					tables
+	id						id
+	nombre					name
+	descripcion				description
+	
+usuarios_mesa			users_table
+	id_mesa					id_table
+	id_planilla				id_character
+	rol						role			("Master","Player")
+
+planillas_jugador		characters_user
+	id_usuario				id_user
+	id_planilla				id_character
+	
+Planilla				character
+	nombre					name
+	edad					age
+	altura					heigth
+	peso					weigth
+	transfondo				history
+	id_juego				id_game
+	
+
+
+
+pj
+	atribtos			(fue, agi, cons, int)
+	aptitudes			(intimidar, detectar, nadar)
+	dotes				(skilles)
+
