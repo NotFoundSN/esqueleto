@@ -2,9 +2,27 @@
 const app = require('../app');
 const debug = require('debug')('back:server');
 const http = require('http');
+const mqtt = require("mqtt")  // require mqtt
+const mqttController = require('../controllers/mqttController');
+/*const path = require('path')
+const KEY = fs.readFileSync(path.join(__dirname, '/tls-key.pem'))
+const CERT = fs.readFileSync(path.join(__dirname, '/tls-cert.pem'))
+const TRUSTED_CA_LIST = fs.readFileSync(path.join(__dirname, '/crt.ca.cg.pem'))*/
 
 /** Obtiene puerto del entorno y lo setea **/
+// mas opciones https://github.com/mqttjs/MQTT.js?tab=readme-ov-file#client
+const optionsMQTT = {
+  port: 0, //mqttPort
+  host: 'host', //mqttHost
+  /*key: KEY,
+  cert: CERT,
+  rejectUnauthorized: true,
+  // The CA list will be used to determine if server is authorized
+  ca: TRUSTED_CA_LIST,*/ //archivos de seguridad opcionales
+  protocol: 'mqtts'
+}
 const port = normalizePort(process.env.PORT || '3000');
+const client = mqtt.connect(optionsMQTT)  // create a client
 app.set('port', port);
 
 /** crea sv http **/
@@ -66,3 +84,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+/** MQTT LISTEN **/
+client.subscribe('variable')
+client.on('message', mqttController.readMQTT)
